@@ -15,7 +15,7 @@ def st_message(message):
 
 
 @bot.message_handler(commands=['dice'])
-def st_message(message):
+def dicethrow_message(message):
     bot.send_message(random.randint(1, 6))
     print('dice', message.chat.first_name)
 
@@ -23,12 +23,6 @@ def st_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     print(message.text, message.chat.first_name)
-    bot.send_message(message.chat.id, message.text)
-
-
-@bot.message_handler(content_types=['sticker'])
-def send_stickid(message):
-    print(message)
 
 
 bot.polling()
