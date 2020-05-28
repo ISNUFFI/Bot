@@ -16,7 +16,7 @@ def st_message(message):
 
 @bot.message_handler(commands=['dice'])
 def dicethrow_message(message):
-    bot.send_message(random.randint(1, 6))
+    bot.send_message(str(random.randint(1, 6)))
     print('dice', message.chat.first_name)
 
 
