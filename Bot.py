@@ -1,11 +1,11 @@
 from telebot import types
-import random
+from random import randint
 import telebot
 import config
 bot = telebot.TeleBot(config.token)
 
-keyboard1 = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
-keyboard1.row('Кинуть кости')
+keyboard1 = types.ReplyKeyboardMarkup(one_time_keyboard=False, resize_keyboard=True)
+keyboard1.row('/dice')
 
 
 @bot.message_handler(commands=['start'])
@@ -16,7 +16,7 @@ def st_message(message):
 
 @bot.message_handler(commands=['dice'])
 def dicethrow_message(message):
-    bot.send_message(str(random.randint(1, 6)))
+    bot.send_message(message.chat.id, '{}'.format(randint(1, 6)))
     print('dice', message.chat.first_name)
 
 
