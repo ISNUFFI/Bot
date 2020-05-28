@@ -18,7 +18,9 @@ def st_message(message):
 def send_text(message):
     print(message.text, message.chat.first_name)
     if message.text.lower() == 'кинуть кости':
-        bot.send_message(message.chat.id, '{}'.format(randint(1, 6)))
+        rnd = randint(1, 6)
+        bot.send_message(message.chat.id, '{}'.format(rnd))
+        types.Dice(rnd, 'Dice')
 
 
 bot.polling()
