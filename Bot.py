@@ -3,13 +3,13 @@ import telebot
 import config
 bot = telebot.TeleBot(config.token)
 
-keyboard1 = telebot.types.ReplyKeyboardMarkup()
+keyboard1 = types.ReplyKeyboardMarkup()
 keyboard1.row('Привет', 'Пока')
 
 
 @bot.message_handler(commands=['start'])
 def st_message(message):
-    bot.send_message(message.chat.id, 'Hello!')
+    bot.send_message(message.chat.id, 'Hello!', reply_markup=keyboard1)
     print(message.chat.first_name)
 
 
