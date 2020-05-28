@@ -14,10 +14,10 @@ def st_message(message):
     print(message.chat.first_name)
 
 
-@bot.message_handler()
+@bot.message_handler(content_types=['text'])
 def send_text(message):
-    print(message.text, message.chat.first_name, '\n', message)
-    if message.text == 'кинуть кости {}'.format(config.dice):
+    print(message.text, message.chat.first_name)
+    if message.text.lower() == 'кинуть кости {}'.format(config.dice):
         rnd = randint(1, 6)
         bot.send_message(message.chat.id, config.dices[rnd])
 
