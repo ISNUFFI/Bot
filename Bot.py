@@ -17,7 +17,7 @@ def st_message(message):
 @bot.message_handler()
 def send_text(message):
     print(message.text, message.chat.first_name, '\n', message)
-    if message.text.lower() == 'кинуть кости{}'.format(config.dice):
+    if message.text == 'кинуть кости {}'.format(config.dice):
         rnd = randint(1, 6)
         bot.send_message(message.chat.id, config.dices[rnd])
 
