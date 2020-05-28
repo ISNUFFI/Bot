@@ -4,15 +4,17 @@ import config
 bot = telebot.TeleBot(config.token)
 
 
-def generate_markup():
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
-    markup.add(types.KeyboardButton('Hello'))
+
 
 
 @bot.message_handler(commands=['start'])
 def st_message(message):
-    generate_markup()
     bot.send_message(message.chat.id, 'Hello!')
+    print(message.chat.first_name)
+    user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
+    button_phone = types.KeyboardButton(text="", request_contact=True)
+    user_markup.add(button_phone)
+    send = bot.send_message(message.chat.id, 'Поделитесь своим номером',reply_markup=user_markup)
 
 
 @bot.message_handler(content_types=['text'])
