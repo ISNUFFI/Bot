@@ -1,12 +1,13 @@
+from telebot import types
 import telebot
 import config
 bot = telebot.TeleBot(config.token)
 
 
 def generate_markup():
-    markup = bot.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
-    markup.add('Привет')
-    
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
+    markup.add(types.KeyboardButton('Hello'))
+
 
 @bot.message_handler(commands=['start'])
 def st_message(message):
@@ -18,7 +19,6 @@ def st_message(message):
 def send_text(message):
     print(message.text, message.chat.first_name)
     bot.send_message(message.chat.id, message.text)
-
 
 
 @bot.message_handler(content_types=['sticker'])
