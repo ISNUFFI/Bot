@@ -11,10 +11,8 @@ bot = telebot.TeleBot(config.token)
 def st_message(message):
     bot.send_message(message.chat.id, 'Hello!')
     print(message.chat.first_name)
-    user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
-    button_phone = types.KeyboardButton(text="", request_contact=True)
-    user_markup.add(button_phone)
-    send = bot.send_message(message.chat.id, 'Поделитесь своим номером',reply_markup=user_markup)
+    keyboard1 = telebot.types.ReplyKeyboardMarkup()
+    keyboard1.row('Привет', 'Пока')
 
 
 @bot.message_handler(content_types=['text'])
