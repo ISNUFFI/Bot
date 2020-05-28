@@ -15,7 +15,7 @@ def send_text(message):
     bot.send_message(message.chat.id, message.text)
     bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBjF7P7AOoo4vgRL2KlUKtbd7y4YwtAAJVAQAC81Y_F3TXHEt6LzP4GQQ')
     if message.text.lower() == 'dice' :
-        bot.send_dice(message.chat.id, 'DICE')
+        bot.get_user_profile_photos(message.chat.id)
 
 
 @bot.message_handler(content_types=['sticker'])
