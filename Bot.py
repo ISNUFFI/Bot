@@ -1,16 +1,23 @@
 from telebot import types
+import random
 import telebot
 import config
 bot = telebot.TeleBot(config.token)
 
-keyboard1 = types.ReplyKeyboardMarkup()
-keyboard1.row('Привет', 'Пока')
+keyboard1 = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
+keyboard1.row('Кинуть кости')
 
 
 @bot.message_handler(commands=['start'])
 def st_message(message):
     bot.send_message(message.chat.id, 'Hello!', reply_markup=keyboard1)
     print(message.chat.first_name)
+
+
+@bot.message_handler(commands=['dice'])
+def st_message(message):
+    bot.send_message(random.randint(1, 6))
+    print('dice', message.chat.first_name)
 
 
 @bot.message_handler(content_types=['text'])
