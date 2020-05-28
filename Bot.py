@@ -5,7 +5,7 @@ import config
 bot = telebot.TeleBot(config.token)
 
 keyboard1 = types.ReplyKeyboardMarkup(one_time_keyboard=False, resize_keyboard=True)
-keyboard1.row('Кинуть кости')
+keyboard1.row('Кинуть кости {}'.format(config.dice))
 
 
 @bot.message_handler(commands=['start'])
@@ -14,12 +14,12 @@ def st_message(message):
     print(message.chat.first_name)
 
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler()
 def send_text(message):
-    print(message.text, message.chat.first_name)
-    if message.text.lower() == 'кинуть кости':
+    print(message.text, message.chat.first_name, '\n', message)
+    if message.text.lower() == 'кинуть кости{}'.format(config.dice):
         rnd = randint(1, 6)
-        bot.send_dice(message.chat.id, 'DICE')
+        bot.send_message(message.chat.id, config.dices[rnd])
 
 
 bot.polling()
