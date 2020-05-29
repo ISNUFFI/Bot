@@ -6,11 +6,14 @@ import os
 import time
 bot = telebot.TeleBot(config.token)
 
+keyboard1 = types.ReplyKeyboardMarkup(one_time_keyboard=False, resize_keyboard=True)
+keyboard1.row('Кинуть кости {}'.format(config.dice))
+
 
 @bot.message_handler(commands=['test'])
 def find_file_ids(message):
-    for file in os.listdir('Pictures/tg'):
-        f = open('Pictures/tg'+file, 'rb')
+    for file in os.listdir('/Users/SNUFF/Pictures/tg/'):
+        f = open('/Users/SNUFF/Pictures/tg/'+file, 'rb')
         msg = bot.send_photo(message.chat.id, f, None)
         # А теперь отправим вслед за файлом его file_id
         bot.send_message(message.chat.id, msg.photo.file_id, reply_to_message_id=msg.message_id)
